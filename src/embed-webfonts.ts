@@ -110,7 +110,8 @@ async function getCSSRules(
 
   // First loop inlines imports
   styleSheets.forEach((sheet) => {
-    if ('cssRules' in sheet) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (sheet.hasOwnProperty('cssRules')) {
       try {
         toArray<CSSRule>(sheet.cssRules || []).forEach((item, index) => {
           if (item.type === CSSRule.IMPORT_RULE) {
